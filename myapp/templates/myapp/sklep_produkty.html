@@ -1,0 +1,41 @@
+{% extends 'myapp/base.html' %}
+   {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+   {% load static %}
+   {% block content %}
+   Lista produktow:
+   <!-- <table border="1px"> -->
+      <!-- <tr><th></tf><th>produkt</th><th>cena</th></tr> -->
+   <div class="row">
+      {% for prod in post_produkty %} 
+      <div class="col-sm-5 col-lg-5 col-md-5" style="width: 250px;">
+          <div class="thumbnail">
+              <div style="width: 64px; height: 64px; margin: 10px auto; background: url({% static 'img/'%}{{ prod.obrazek }}) center no-repeat; background-size: 100%;">
+                  <!-- <img src="static/img/{{ prod.obrazek }}" alt="" style="width: 64px; margin: auto;"> -->
+               </div>
+              <div class="caption">
+                 <h4 class="pull-right">{{ prod.cena }} zł</h4>
+                 <h4><a href="#">{{ prod.nazwa }}</a>
+                 </h4>
+                 <p>{{ prod.opis }}</p>
+              </div>
+
+              <div style="width: 100%; text-align: center;">
+                  <a href="{% url 'koszyk_dodaj' pid=prod.produkt_id %}"><span>Dodaj do koszyka <img src="{% static 'img/cart_add.png' %}" style="width: 16px"/></span></a>
+              </div>
+
+              <div class="ratings">
+                 <p class="pull-right">12 reviews</p>
+                 <p>
+                      <span class="glyphicon glyphicon-star"></span>
+                      <span class="glyphicon glyphicon-star"></span>
+                      <span class="glyphicon glyphicon-star"></span>
+                      <span class="glyphicon glyphicon-star"></span>
+                      <span class="glyphicon glyphicon-star-empty"></span>
+                 </p>
+              </div>
+          </div>
+      </div>
+      {% endfor %}
+   </div>
+
+   {% endblock content %}
