@@ -3,7 +3,6 @@
 
    <style>
       .table td, th {
-         /*border: 1px solid gray;*/
          text-align: center;
       }
    </style>
@@ -48,54 +47,51 @@
 
       </tbody>
    </table>
-   <!-- </div> -->
 
    <div class="container" style="display: none;" id="con_zamawiam">
       <hr />
       <div class="row">
          <div class="col-md-8">
-            <section id="loginForm">
-               <form action="." method="post" class="form-horizontal">
-                   {% csrf_token %}    <!-- Token zabezpieczejacy przed atakami CSRF -->
-                   <h4>DANE DO WYSYŁKI:</h4>
-                   <hr />
+            <form action="." method="post" class="form-horizontal">
+                {% csrf_token %}    <!-- Token zabezpieczejacy przed atakami CSRF -->
+                <h4>DANE DO WYSYŁKI:</h4>
+                <hr />
 
-                   <div class="form-group">
-                       <label for="id_username" class="col-md-3 control-label">Imie Nazwisko</label>
-                       <div class="col-md-9">
-                           {{ form.imie_nazwisko }}
-                       </div>
-                   </div>
+                <div class="form-group">
+                    <label for="id_username" class="col-md-3 control-label">Imie Nazwisko</label>
+                    <div class="col-md-9">
+                        {{ form.imie_nazwisko }}
+                    </div>
+                </div>
 
-                   <div class="form-group">
-                       <label for="" class="col-md-3 control-label">Ulica</label>
-                       <div class="col-md-9">
-                           {{ form.ulica }}
-                       </div>
-                   </div>
+                <div class="form-group">
+                    <label for="" class="col-md-3 control-label">Ulica</label>
+                    <div class="col-md-9">
+                        {{ form.ulica }}
+                    </div>
+                </div>
 
-                   <div class="form-group">
-                       <label for="" class="col-md-3 control-label">Miasto</label>
-                       <div class="col-md-9">
-                           {{ form.miasto }}
-                       </div>
-                   </div>
+                <div class="form-group">
+                    <label for="" class="col-md-3 control-label">Miasto</label>
+                    <div class="col-md-9">
+                        {{ form.miasto }}
+                    </div>
+                </div>
 
-                   <div class="form-group">
-                       <label for="" class="col-md-3 control-label">Telefon</label>
-                       <div class="col-md-9">
-                           {{ form.telefon }}
-                       </div>
-                   </div>
+                <div class="form-group">
+                    <label for="" class="col-md-3 control-label">Telefon</label>
+                    <div class="col-md-9">
+                        {{ form.telefon }}
+                    </div>
+                </div>
 
-                   <div class="form-group">
-                       <div class="col-md-offset-4 col-md-9">
-                           <input type="submit" value="Zapisz dane" class="btn btn-success" />
-                       </div>
-                   </div>
+                <div class="form-group">
+                    <div class="col-md-offset-4 col-md-9">
+                        <input type="submit" value="Zapisz dane" class="btn btn-success" />
+                    </div>
+                </div>
+            </form>
 
-               </form>
-            </section>
          </div>
       </div>
    </div>

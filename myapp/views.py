@@ -43,8 +43,8 @@ def koszyk_view(request):
         'post_produkty': produkty_list,
         'post_koszyk': koszyk_list,
         'post_kategorie': kategorie_list,
-        'form': form,
         'suma': suma,
+        'form': form,
     })
 
 
