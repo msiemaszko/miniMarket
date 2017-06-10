@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
+
 from .models import Produkty, Koszyk, Kategoria
 from .forms import PostForm
-from django.shortcuts import redirect
 
 
 # widok domyślny - index
@@ -36,6 +36,7 @@ def koszyk_view(request):
         tmpObj.produkt_id.cena = tmpObj.produkt_id.cena * tmpObj.ilosc
         suma += tmpObj.produkt_id.cena
 
+    # zaladowanie formularza
     form = PostForm()
 
     return render(request, 'myapp/koszyk.html', {
@@ -66,9 +67,9 @@ def koszyk_dodaj(request, poz_id):
         koszyk_obj.ilosc += 1
         koszyk_obj.save()
 
+    # przekierowanie na poprzednia strone
     referer = request.META.get('HTTP_REFERER').split("/")  # Podzielone HTTP Refferer
-
-    if referer[3] == "kat":
+    if referer[3] == "kat":  # jezeli filtrowane
         return redirect('filtr', filtr=referer[4], result="ok")
     else:
         return redirect('index', result="ok")

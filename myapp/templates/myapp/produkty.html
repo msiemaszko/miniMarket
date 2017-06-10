@@ -3,15 +3,15 @@
 {% block content %}
 
    {% if result %}
-      <div id="message" style="position: fixed; width: 500px; z-index: 9999; left: 40%; top: 80px;">
-         <div id="alert-ok" class="alert alert-success alert-dismissable fade in" style="width: 80%;">
+      <div id="message" style="position: fixed; width: 500px; z-index: 9999; left: 40%; top: 70px;">
+         <div id="alert-ok" class="alert alert-success alert-dismissable fade in" style="width: 90%;">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <strong>OK!</strong> Dodano do koszyka.
+            <center><strong>OK!</strong> Dodano do koszyka.</center>
          </div>
       </div>
       <script>
          t = document.getElementById('alert-ok')
-         window.setTimeout(function () { t.style.visibility = 'hidden'; }, 1100)
+         window.setTimeout(function () { t.style.visibility = 'hidden'; }, 1500)
       </script>
    {% endif %}
 
