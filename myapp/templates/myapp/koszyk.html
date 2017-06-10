@@ -1,0 +1,102 @@
+{% extends 'myapp/base.html' %}
+{% block content %}
+
+   <style>
+      .table td, th {
+         /*border: 1px solid gray;*/
+         text-align: center;
+      }
+   </style>
+
+   <h4>ZAWARTOŚĆ KOSZYKA:</h4>
+   <table class="table table-hover">
+      <thead>
+         <tr>
+            <th width=""></th>
+            <th width="250px"></th>
+            <th width="">ilość</th>
+            <th width="">cena</th>
+            <th width=""></th>
+         </tr>
+      </thead>
+      <tbody>
+         {% for pp in post_koszyk %}
+         <tr>
+            <td> {{ forloop.counter }}. </td>
+            <td style="text-align: left; padding-left: 10px;">
+               <img src="static/img/{{ pp.produkt_id.obrazek }}" style="width: 32px; margin-right: 10px;"/>
+               {{pp.produkt_id}}
+            </td>
+            <td> {{ pp.ilosc }} </td>
+            <td> {{ pp.produkt_id.cena }} </td>
+            <td>
+               <a href="{% url 'koszyk_kasuj' poz_id=pp.poz %}"><img src="static/img/ico_delete.png" title="Skasuj z koszyka"/></a>
+            </td>
+         </tr>
+         {% endfor %}
+
+         <tr style="height: 50px; background: none;">
+            <td colspan="3" style="text-align: right;"><b>RAZEM:</b></td>
+            <td > <b>{{ suma }}</b> </td>
+         </tr>
+
+         <tr style="height: 50px; background: none;">
+            <td colspan="6" style="border: none;">
+               <a class="btn btn-success" onClick="getElementById('con_zamawiam').style.display='initial'">Zamawiam !</a>
+            </td>
+         </tr>
+
+      </tbody>
+   </table>
+   <!-- </div> -->
+
+   <div class="container" style="display: none;" id="con_zamawiam">
+      <hr />
+      <div class="row">
+         <div class="col-md-8">
+            <section id="loginForm">
+               <form action="." method="post" class="form-horizontal">
+                   {% csrf_token %}    <!-- Token zabezpieczejacy przed atakami CSRF -->
+                   <h4>DANE DO WYSYŁKI:</h4>
+                   <hr />
+
+                   <div class="form-group">
+                       <label for="id_username" class="col-md-3 control-label">Imie Nazwisko</label>
+                       <div class="col-md-9">
+                           {{ form.imie_nazwisko }}
+                       </div>
+                   </div>
+
+                   <div class="form-group">
+                       <label for="" class="col-md-3 control-label">Ulica</label>
+                       <div class="col-md-9">
+                           {{ form.ulica }}
+                       </div>
+                   </div>
+
+                   <div class="form-group">
+                       <label for="" class="col-md-3 control-label">Miasto</label>
+                       <div class="col-md-9">
+                           {{ form.miasto }}
+                       </div>
+                   </div>
+
+                   <div class="form-group">
+                       <label for="" class="col-md-3 control-label">Telefon</label>
+                       <div class="col-md-9">
+                           {{ form.telefon }}
+                       </div>
+                   </div>
+
+                   <div class="form-group">
+                       <div class="col-md-offset-4 col-md-9">
+                           <input type="submit" value="Zapisz dane" class="btn btn-success" />
+                       </div>
+                   </div>
+
+               </form>
+            </section>
+         </div>
+      </div>
+   </div>
+{% endblock content %}
