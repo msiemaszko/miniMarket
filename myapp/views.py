@@ -69,8 +69,8 @@ def koszyk_dodaj(request, poz_id):
 
     # przekierowanie na poprzednia strone
     referer = request.META.get('HTTP_REFERER').split("/")  # Podzielone HTTP Refferer
-    if referer[3] == "kat":  # jezeli filtrowane
-        return redirect('filtr', filtr=referer[4], result="ok")
+    if referer[3][:3] == "kat":  # jezeli filtrowane
+        return redirect('filtr', filtr=referer[3][-1], result="ok")
     else:
         return redirect('index', result="ok")
 
